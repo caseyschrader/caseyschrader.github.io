@@ -11,11 +11,12 @@ const Portfolio = () => {
     email: "caseymschrader@gmail.com",
     phone: "(801) 793-6810",
     linkedin: "https://linkedin.com/in/caseyschrader",
-    github: "https://github.com/caseyschrader"
+    github: "https://github.com/caseyschrader",
+    resumeUrl: "/assets/pdfs/CaseyMSchraderResume.pdf"
   };
 
   const skills = [
-    "Python", "R", "SQL","ArcGIS Pro", "SharePoint API", "Database Management", 
+    "Python", "R", "SQL","ArcGIS Pro", "REST", "Database Management", "SharePoint",
     "Spatial Analysis", "Remote Sensing", "Lidar and 3D visualization", "Photogrammetry and DEM processing", "Automation", "Model Builder","Survey123", "Russian"
   ];
 
@@ -106,7 +107,7 @@ const Portfolio = () => {
       ],
       tools: ["UAV Lidar", "ENVI + IDL", "ArcGIS Pro", "Point Cloud Processing"],
       key_findings: "Demonstrated superiority of Lidar for accurate terrain mapping compared to SfM methods.",
-      pdfUrl: "/assets/pdf/sunnyside.pdf",
+      pdfUrl: "/assets/pdfs/sunnyside.pdf",
       imageUrl: "/api/placeholder/600/400"
     }
   ];
@@ -117,6 +118,12 @@ const Portfolio = () => {
       description: "Python scripts for automating survey monument processing with ArcGIS and SharePoint integration.",
       language: "Python",
       url: "https://github.com/caseyschrader/SLCOSharePointAutomation"
+    },
+    {
+      name:"green_space_analysis",
+      description: "Python script analyzing accessibility of urban green spaces in Salt Lake City using OSMnx and GeoPandas.",
+      language: "Python",
+      url: "https://github.com/caseyschrader/green_space_analysis"
     },
 
     {
@@ -159,6 +166,14 @@ const Portfolio = () => {
           <Github className="w-5 h-5 mr-2" />
           GitHub
         </a>
+        <a 
+          href={personalInfo.resumeUrl} 
+          download="Casey_Schrader_Resume.pdf" 
+          className="flex items-center text-blue-600 hover:text-blue-800"
+        >
+          <FileText className="w-5 h-5 mr-2" />
+          Resume
+        </a>
       </div>
     </div>
   );
@@ -188,7 +203,7 @@ const Portfolio = () => {
         <h3 className="text-lg font-semibold mb-4">Relevant Experience</h3>
         <div className="space-y-6">
           {experience.map((job, index) => (
-            <div key={index} className="border-l-4 border-blue-500 pl-4">
+            <div key={index} className="border-l-4 border-[#2171B5] pl-4">
               <div className="flex justify-between items-start">
                 <div>
                   <h4 className="font-semibold text-gray-900">{job.title}</h4>
@@ -224,72 +239,62 @@ const Portfolio = () => {
   );
 
   const renderProjects = () => {
-    const project = projects[selectedProject];
     return (
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-        <div className="bg-gray-50 px-6 py-4 flex items-center justify-between">
-          <button 
-            onClick={() => setSelectedProject(prev => prev > 0 ? prev - 1 : projects.length - 1)}
-            className="p-2 hover:bg-gray-200 rounded-full"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <h2 className="text-2xl font-bold text-gray-900">{project.title}</h2>
-          <button 
-            onClick={() => setSelectedProject(prev => prev < projects.length - 1 ? prev + 1 : 0)}
-            className="p-2 hover:bg-gray-200 rounded-full"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-        </div>
-        
-        <div className="p-6">
-          <p className="text-gray-600 mb-6">{project.description}</p>
-          
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-3">Key Highlights</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {project.highlights.map((highlight, idx) => (
-                <div key={idx} className="flex items-start">
-                  <Map className="w-5 h-5 text-blue-500 mt-1 mr-2 flex-shrink-0" />
-                  <span className="text-gray-600">{highlight}</span>
+      <div className="space-y-8"> {/* This creates vertical spacing between projects */}
+        {projects.map((project, index) => (
+          <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div className="bg-gray-50 px-6 py-4">
+              <h2 className="text-2xl font-bold text-gray-900">{project.title}</h2>
+            </div>
+            
+            <div className="p-6">
+              <p className="text-gray-600 mb-6">{project.description}</p>
+              
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Key Highlights</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {project.highlights.map((highlight, idx) => (
+                    <div key={idx} className="flex items-start">
+                      <Map className="w-5 h-5 text-blue-500 mt-1 mr-2 flex-shrink-0" />
+                      <span className="text-gray-600">{highlight}</span>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+              
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Tools Used</h3>
+                <div className="flex flex-wrap gap-2">
+                  {project.tools.map((tool, idx) => (
+                    <span key={idx} className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="bg-gray-50 p-4 rounded-lg mb-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Key Findings</h3>
+                <p className="text-gray-600">{project.key_findings}</p>
+              </div>
+  
+              <a 
+                href={project.pdfUrl}
+                download={`${project.title.split(" ").join("")}.pdf`}
+                className="bg-[#2171B5] text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors w-52 duration-300 flex justify-center items-center gap-2"
+              >
+                <span>Download Project PDF</span>
+              </a>
             </div>
           </div>
-          
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-3">Tools Used</h3>
-            <div className="flex flex-wrap gap-2">
-              {project.tools.map((tool, idx) => (
-                <span key={idx} className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
-                  {tool}
-                </span>
-              ))}
-            </div>
-          </div>
-          
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Key Findings</h3>
-            <p className="text-gray-600">{project.key_findings}</p>
-          </div>
-          <a 
-          href={project.pdfUrl}
-          download={`${project.title.split(" ").join("")}.pdf`}
-          className="p-2 bg-blue-600 hover:bg-blue-800 rounded-full text-white">
-          Download Project PDF
-          </a>
-          
-
-        </div>
+        ))}
       </div>
     );
   };
-
   const renderGithub = () => (
     <div className="grid gap-6 md:grid-cols-2">
       {githubRepos.map((repo, index) => (
-        <div key={index} className="bg-white rounded-lg shadow-md p-6 h-48 flex flex-col justify-between">
+        <div key={index} className="bg-white rounded-lg shadow-md p-6 flex flex-col justify-between">
           <div>
             <div className="flex items-center mb-4">
               <Github className="w-6 h-6 text-gray-600 mr-2" />
@@ -304,11 +309,12 @@ const Portfolio = () => {
                 {repo.language}
               </span>
             </div>
-            <a href={repo.url} className="inline-flex items-center text-blue-600 hover:text-blue-800">
+           
+          </div>
+          <a href={repo.url} className="bg-[#2171B5] text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors w-48 justify-center duration-300 flex items-center gap-2">
               <ExternalLink className="w-4 h-4 mr-1" />
               View Repository
-            </a>
-          </div>
+          </a>
         </div>
       ))}
     </div>
@@ -344,7 +350,7 @@ const Portfolio = () => {
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 flex items-center gap-2"
+              className="bg-[#2171B5] text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 flex items-center gap-2"
             >
               <ExternalLink className="w-4 h-4" />
               View on RPubs
@@ -373,7 +379,7 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen" style={{
-      backgroundImage: 'url(/assets/pdfs/DEMart.png)',
+      backgroundImage: 'url(/assets/pdfs/bluedemart2.png)',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed'
