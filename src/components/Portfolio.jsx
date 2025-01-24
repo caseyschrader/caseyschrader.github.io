@@ -114,13 +114,13 @@ const Portfolio = () => {
 
   const githubRepos = [
     {
-      name: "SLCOSharePointAutomation",
+      name: "SLCO SharePoint Automation",
       description: "Python scripts for automating survey monument processing with ArcGIS and SharePoint integration.",
       language: "Python",
       url: "https://github.com/caseyschrader/SLCOSharePointAutomation"
     },
     {
-      name:"green_space_analysis",
+      name:"Greenspace Accessibility Analysis",
       description: "Python script analyzing accessibility of urban green spaces in Salt Lake City using OSMnx and GeoPandas.",
       language: "Python",
       url: "https://github.com/caseyschrader/green_space_analysis"
