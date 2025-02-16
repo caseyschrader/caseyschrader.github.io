@@ -131,6 +131,13 @@ const Portfolio = () => {
       description: "A simple yet fun remake of the classic 'Asteroids' in Python to showcase classes and OOP.",
       language: "Python",
       url: "https://github.com/caseyschrader/Asteroids"
+    },
+
+    {
+      name:"Maze Solver",
+      description: "This project draws a random maze and then solves within a tkinter GUI. This showcases knowledge of algorithms to automate!",
+      language: "Python",
+      url: "https://github.com/caseyschrader/Maze-Solver"
     }
   ];
 
@@ -182,10 +189,7 @@ const Portfolio = () => {
     <div className="bg-white rounded-lg shadow-lg p-6">
       <h2 className="text-2xl font-bold text-gray-900 mb-4">About Me</h2>
       <p className="text-gray-600 mb-8">
-        I am a GIS specialist with skills in spatial analysis, data management, programming, and data visualization.
-        I strive to uncover insights within geographic information and transform raw data into useful solutions.
-        My adaptability, problem-solving, and commitment to continous learning make me a valuable assest in any
-        collaborative environment.
+      I'm a GIS specialist who gets excited about finding smarter ways to work with spatial data. While I'm comfortable with traditional spatial analysis and data visualization, what really drives me is developing automated solutions and diving deeper into the programming side of GIS. I enjoy transforming complex geospatial data into streamlined workflows and meaningful insights. I'm particularly focused on expanding my coding skills to create more efficient and scalable GIS solutions.
       </p>
 
       <div className="mb-8">
